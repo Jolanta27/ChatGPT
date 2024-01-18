@@ -1,5 +1,4 @@
  import { useState, useEffect} from 'react';
- import axios from 'axios';
 
 
 const ChatGpt = () => {
@@ -16,24 +15,25 @@ const ChatGpt = () => {
             const fetchResponse = async () => {
                 const conversation = Array.isArray(message) ? message.map(message => message.content).join('\n') : '';
                     try {
-                        const response = await axios.post(
-                "https://api.openai.com/v1/engines/davinci/completions",
-                {
-                    model: 'text-davinci-002',
-                    prompt:`${conversation}\nChatGPT:`,
-                    max_tokens: 150,
-                    temperature: 0.5
-                },  
-                {
+                        const response = await fetch(
+                "https://api.openai.com/v1/engines/davinci-codex/completions",
+                {   
+                    method: "POST",
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
-                    }      
-                }
+                    },
+                    body: JSON.stringify(
+                        {
+                            model: 'gpt-3.5-turbo-instruct',
+                            prompt: conversation,
+                            max_token: 7,
+                        }),   
+                },   
                         
             );
-
-            const botResponse = response.data.choices[0].text.trim();
+            const data = await response.json();
+            const botResponse = data.choices[0].text.trim();
 
             setMessage(prevMessages => [...prevMessages, {role: 'ChatGPT', content: botResponse}]);
             } catch (error) {
@@ -51,6 +51,8 @@ const ChatGpt = () => {
                 if (input.trim() !== '') {
                     setNewUserMessage({role: 'user', content: input});
                     setInput('');
+
+                    
                 }
             };
 

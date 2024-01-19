@@ -16,7 +16,7 @@ const ChatGpt = () => {
                 const conversation = Array.isArray(message) ? message.map(message => message.content).join('\n') : '';
                     try {
                         const response = await fetch(
-                "https://api.openai.com/v1/engines/davinci-codex/completions",
+                'https://api.openai.com/v1/chat/completions',
                 {   
                     method: "POST",
                     headers: {
@@ -25,17 +25,18 @@ const ChatGpt = () => {
                     },
                     body: JSON.stringify(
                         {
-                            model: 'gpt-3.5-turbo-instruct',
-                            prompt: conversation,
-                            max_token: 7,
+                            model: 'gpt-3.5-turbo',
+                            messages: [{role: 'system', content: ''}, {role: 'user', content: conversation}],
+                            max_tokens: 600,
                         }),   
                 },   
                         
             );
             const data = await response.json();
-            const botResponse = data.choices[0].text.trim();
+            console.log(data);
+            const botResponse = data.choices[0].message.content;
 
-            setMessage(prevMessages => [...prevMessages, {role: 'ChatGPT', content: botResponse}]);
+            setMessage(prevMessages => [...prevMessages, {role: 'chat GPT', content: botResponse}]);
             } catch (error) {
                 console.log('Error sending message:', error);
             }

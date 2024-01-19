@@ -1,4 +1,4 @@
- import { useState, useEffect} from 'react';
+import { useState, useEffect} from 'react';
 
 
 const ChatGpt = () => {
@@ -13,7 +13,6 @@ const ChatGpt = () => {
         useEffect(() => {
 
             const fetchResponse = async () => {
-                const conversation = Array.isArray(message) ? message.map(message => message.content).join('\n') : '';
                     try {
                         const response = await fetch(
                 'https://api.openai.com/v1/chat/completions',
@@ -26,7 +25,7 @@ const ChatGpt = () => {
                     body: JSON.stringify(
                         {
                             model: 'gpt-3.5-turbo',
-                            messages: [{role: 'system', content: ''}, {role: 'user', content: conversation}],
+                            messages: [{role: 'system', content: ''}, {role: 'user', content: newUserMessage.content}],
                             max_tokens: 600,
                         }),   
                 },   

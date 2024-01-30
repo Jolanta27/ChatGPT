@@ -9,7 +9,13 @@ const ChatGpt = () => {
         const handleInputChange = (e) => {
             setInput(e.target.value);
         };
-
+        const handleKeyDown = (event) => {
+            if(event.key === 'Enter'){
+                event.preventDefault();
+                handleSubmit();
+            }
+        
+        }
         useEffect(() => {
 
             const fetchResponse = async () => {
@@ -70,8 +76,15 @@ const ChatGpt = () => {
                             </div>
                         ))}
                     </div>
-                    <input type="text" value={input} onChange={handleInputChange} placeholder='How can I help you?' style={ChatbotStyles.input} />
-                    <button style={ChatbotStyles.button} onClick={handleSubmit}>Submit Prompt</button>
+                    <input
+                    type="text" 
+                    value={input} 
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyDown}
+                    placeholder='How can I help you?' 
+                    style={ChatbotStyles.input} />
+                    <button style={ChatbotStyles.button} 
+                    onClick={handleSubmit}>Submit Prompt</button>
                 </div>
             </div>
         );

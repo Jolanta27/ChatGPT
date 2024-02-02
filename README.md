@@ -10,18 +10,19 @@ ChatGpt is a chat application that uses the OpenAI GPT-3 model to generate respo
 
 <h3>Setup</h3>
 
-1.Clone the repository
+1. Clone the repository
 git clone https://github.com/Jolanta27/ChatGPT.git
 
-2.Install the dependencies
+2. Install the dependencies
 cd ChatGPT
 npm install
 
-3.Start the application
+3. Start the application
 npm start
 
 <h3>Usage</h3>
-To use the chatbot, simply type your message into the input field and press 'Enter' or click the 'Submit Prompt' button. 
-The chatbot will generate a response and display it in the chat interface.
+<p>To use the chatbot, simply type your message into the input field and press 'Enter' or click the 'Submit Prompt' button.</p>
+<p>The chatbot will generate a response and display it in the chat interface.</p>
 
-
+<h3>The project looks like:</h3>
+![gpt]https://github.com/Jolanta27/ChatGPT/assets/53143114/f73b0175-904d-487d-a5b8-36dab6f5042a

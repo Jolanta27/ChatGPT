@@ -4,9 +4,9 @@ ChatGpt is a chat application that uses the OpenAI GPT-3 model to generate respo
 
 <h3>Features</h3>
 
--Real-time chat interface
--Uses OpenAI's powerful GPT-3 model for generating responses
--Built with React
+<p>-Real-time chat interface</p>
+<p>-Uses OpenAI's powerful GPT-3 model for generating responses</p>
+<p>-Built with React</p>
 
 <h3>Setup</h3>
 
